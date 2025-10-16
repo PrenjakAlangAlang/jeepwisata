@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeep Adventure Jogja - Petualangan Lava Tour Merapi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --secondary: #1A3C40;
+            --accent: #FFD166;
+            --dark: #2D2D2D;
+            --light: #F8F9FA;
+            --adventure-dark: #1A1F25;
+            --adventure-light: #E9ECEF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(26, 31, 37, 0.95);
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(26, 31, 37, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            /* Use a local image for the hero background. Place your image at: images/hero.jpg */
+            background: linear-gradient(rgba(26, 31, 37, 0.6), rgba(26, 31, 37, 0.75)), url('images/jeep-merapi.jpg');
+            background-size: cover;
+            background-position: center;
+            /* background-attachment: fixed can cause issues on mobile; use scroll for better cross-device behavior */
+            background-attachment: scroll;
+            color: white;
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--light));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* Mobile navigation toggle button (default hidden on desktop) */
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+        }
+
+        .nav-toggle span,
+        .nav-toggle span:before,
+        .nav-toggle span:after {
+            display: block;
+            background: white;
+            height: 3px;
+            width: 22px;
+            border-radius: 2px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle span:before,
+        .nav-toggle span:after {
+            content: '';
+            position: absolute;
+            left: 0;
+        }
+
+        .nav-toggle span:before { top: -7px; }
+        .nav-toggle span:after { top: 7px; }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--dark);
+        }
+
+        /* Adventure Stats */
+        .adventure-stats {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Profile Section */
+        .profile {
+            padding: 100px 0;
+            background-color: white;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .profile-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .profile-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: rotate(-2deg);
+            transition: transform 0.5s;
+        }
+
+        .profile-img:hover {
+            transform: rotate(0deg);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .profile-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .profile-text {
+            flex: 1;
+        }
+
+        .profile-text h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .profile-text p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .adventure-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--adventure-light);
+            padding: 10px 15px;
+            border-radius: 5px;
+            flex: 1 1 calc(50% - 20px);
+            min-width: 200px;
+        }
+
+        .feature i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Lava Tour Packages */
+        .packages {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--light), #e6e9ec);
+            position: relative;
+        }
+
+        .packages:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(to right, var(--primary), var(--accent), var(--primary));
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid #eaeaea;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .package-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .package-img:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+
+        .package-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .package-card:hover .package-img img {
+            transform: scale(1.1);
+        }
+
+        .package-content {
+            padding: 25px;
+        }
+
+        .package-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .package-content p {
+            color: #666;
+            margin-bottom: 20px;
+            min-height: 80px;
+        }
+
+        .package-features {
+            margin-bottom: 20px;
+        }
+
+        .package-features ul {
+            list-style: none;
+        }
+
+        .package-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .package-features i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 100px 0;
+            background-color: var(--adventure-dark);
+            color: white;
+        }
+
+        .gallery .section-title h2 {
+            color: white;
+        }
+
+        .gallery .section-title p {
+            color: #ccc;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact */
+        .contact {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .contact-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        .contact-text h4 {
+            margin-bottom: 8px;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .contact-text p {
+            color: #555;
+        }
+
+        .map {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--adventure-dark);
+            color: white;
+            padding: 80px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 12px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .profile-content {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            /* Show mobile toggle and hide nav by default */
+            .nav-toggle {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+            }
+
+            nav.open {
+                display: block;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+            }
+
+            /* Hide the primary CTA in mobile header to save space */
+            .cta-button {
+                display: none;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons a {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            /* Adjust package cards on smaller screens */
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-button {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="header-left">
+                <div class="logo">
+                    <!--<img src="images/jeep-merapi.jpg" alt="Jeep Adventure Jogja">-->
+                    <div>
+                        <h1>Jeep Adventure</h1>
+                        <span>JOGJA</span>
+                    </div>
+                </div>
+                <!-- Mobile nav toggle (placed to the right of the logo) -->
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                </button>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#profile">Profile</a></li>
+                    <li><a href="#packages">Paket Lava Tour</a></li>
+                    <li><a href="#gallery">Galeri</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+            <a href="#packages" class="cta-button">Pesan Sekarang</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2>Petualangan Ekstrem Lava Tour Merapi</h2>
+            <p>Rasakan sensasi mendebarkan menjelajahi kawasan bekas erupsi Gunung Merapi dengan Jeep Adventure Jogja. Pengalaman tak terlupakan menanti Anda!</p>
+            <div class="hero-buttons">
+                <a href="#packages" class="cta-button">Jelajahi Paket</a>
+                <a href="#gallery" class="cta-button btn-secondary">Lihat Galeri</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adventure Stats -->
+    <section class="adventure-stats">
+        <div class="container stats-container">
+            <div class="stat-item">
+                <span class="stat-number">5000+</span>
+                <span class="stat-text">Petualang Bergabung</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">8+</span>
+                <span class="stat-text">Tahun Pengalaman</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-text">Kepuasan Pelanggan</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-text">Layanan Pelanggan</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile" id="profile">
+        <div class="container">
+            <div class="section-title">
+                <h2>Profil Petualangan Kami</h2>
+                <p>Jeep Adventure Jogja adalah penyedia tur Jeep terkemuka dengan fokus pada pengalaman petualangan yang aman dan tak terlupakan</p>
+            </div>
+            <div class="profile-content">
+                <div class="profile-img">
+                    <img src="images/jeep.jpeg" alt="Jeep Adventure Jogja">
+                </div>
+                <div class="profile-text">
+                    <h3>Petualangan Sejati Dimulai Di Sini</h3>
+                    <p>Dengan lebih dari 8 tahun pengalaman, Jeep Adventure Jogja telah menjadi pilihan utama bagi para petualang yang ingin menjelajahi kawasan Gunung Merapi. Kami menawarkan pengalaman otentik dengan keamanan sebagai prioritas utama.</p>
+                    <p>Tim pemandu profesional kami tidak hanya berpengalaman dalam mengemudi di medan yang menantang, tetapi juga memiliki pengetahuan mendalam tentang sejarah dan geologi Gunung Merapi.</p>
+                    
+                    <div class="adventure-features">
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Perlengkapan Keamanan Lengkap</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-camera"></i>
+                            <span>Dokumentasi Profesional</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-check"></i>
+                            <span>Pemandu Berpengalaman</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-car"></i>
+                            <span>Armada Jeep Terawat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lava Tour Packages -->
+    <section class="packages" id="packages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Paket Petualangan Lava Tour</h2>
+                <p>Pilih paket petualangan sesuai jiwa petualang Anda. Semua paket sudah termasuk pemandu profesional, asuransi, dan perlengkapan keamanan.</p>
+            </div>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-badge">Populer</div>
+                    <div class="package-img">
+                        <img src="images/jeep1.webp" alt="Lava Tour Reguler">
+                    </div>
+                    <div class="package-content">
+                        <h3>Lava Tour Reguler</h3>
+                        <p>Jelajahi kawasan bekas erupsi Merapi dengan rute standar. Kunjungi museum Sisa Hartaku dan nikmati pemandangan alam yang menakjubkan.</p>
+                        
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Durasi: 3-4 jam</li>
+                                <li><i class="fas fa-check"></i> Maksimal 4 orang/Jeep</li>
+                                <li><i class="fas fa-check"></i> Pemandu profesional</li>
+                                <li><i class="fas fa-check"></i> Asuransi perjalanan</li>
+                            </ul>
+                        </div>
+                        
+                        <span class="price">Rp 350.000 / Jeep</span>
+                        <button class="whatsapp-btn" onclick="orderPackage('Lava Tour Reguler', 350000)">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="package-card">
+                    <div class="package-badge">Favorit</div>
+                    <div class="package-img">
+                        <img src="images/jeep2.webp" alt="Lava Tour Plus Sunrise">
+                    </div>
+                    <div class="package-content">
+                        <h3>Lava Tour Plus Sunrise</h3>
+                        <p>Nikmati keindahan sunrise dari Bukit Klangon sebelum menjelajahi kawasan Merapi. Pengalaman menakjubkan yang tidak akan terlupakan.</p>
+                        
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Durasi: 4-5 jam</li>
+                                <li><i class="fas fa-check"></i> Maksimal 4 orang/Jeep</li>
+                                <li><i class="fas fa-check"></i> Sunrise di Bukit Klangon</li>
+                                <li><i class="fas fa-check"></i> Sarapan ringan included</li>
+                            </ul>
+                        </div>
+                        
+                        <span class="price">Rp 450.000 / Jeep</span>
+                        <button class="whatsapp-btn" onclick="orderPackage('Lava Tour Plus Sunrise', 450000)">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="package-card">
+                    <div class="package-badge">Eksklusif</div>
+                    <div class="package-img">
+                        <img src="images/jeep3.webp" alt="Lava Tour Eksklusif">
+                    </div>
+                    <div class="package-content">
+                        <h3>Lava Tour Eksklusif</h3>
+                        <p>Paket lengkap dengan rute lebih panjang, termasuk kunjungan ke Kaliadem dan bunker. Dilengkapi makan siang dan dokumentasi profesional.</p>
+                        
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Durasi: 5-6 jam</li>
+                                <li><i class="fas fa-check"></i> Maksimal 4 orang/Jeep</li>
+                                <li><i class="fas fa-check"></i> Kunjungan ke Kaliadem & Bunker</li>
+                                <li><i class="fas fa-check"></i> Makan siang & dokumentasi</li>
+                            </ul>
+                        </div>
+                        
+                        <span class="price">Rp 550.000 / Jeep</span>
+                        <button class="whatsapp-btn" onclick="orderPackage('Lava Tour Eksklusif', 550000)">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galeri Petualangan</h2>
+                <p>Lihat momen-momen menakjubkan dari petualangan Lava Tour bersama Jeep Adventure Jogja</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/jeep-merapi.jpg" alt="Jeep di kawasan Merapi">
+                    <div class="gallery-overlay">
+                        <h4>Jeep di Kawasan Merapi</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/jeep.jpeg" alt="Sunrise di Merapi">
+                    <div class="gallery-overlay">
+                        <h4>Sunrise di Merapi</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/jeep1.webp" alt="Jeep offroad">
+                    <div class="gallery-overlay">
+                        <h4>Petualangan Offroad</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/jeep2.webp" alt="Pemandangan Merapi">
+                    <div class="gallery-overlay">
+                        <h4>Pemandangan Merapi</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/jeep3.webp" alt="Kelompok wisata">
+                    <div class="gallery-overlay">
+                        <h4>Kelompok Petualang</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/getlstd-property-photo.jpg" alt="Jeep kuning">
+                    <div class="gallery-overlay">
+                        <h4>Armada Jeep Kami</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Petualangan</h2>
+                <p>Jangan ragu untuk menghubungi kami untuk informasi lebih lanjut atau pemesanan paket petualangan</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Markas Petualangan</h4>
+                            <p>Jl. Kaliurang KM 22, Sleman, Yogyakarta</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Telepon/WhatsApp</h4>
+                            <p>+62 812-3456-7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email Petualangan</h4>
+                            <p>adventure@jeepjogja.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Jam Operasional</h4>
+                            <p>Setiap hari: 06.00 - 22.00 WIB</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.320963366209!2d110.4243144747604!3d-7.759950477043119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a599a0272ebad%3A0x5c7c7b83e9c16f0!2sMount%20Merapi!5e0!3m2!1sen!2sid!4v1690123456789!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Jeep Adventure Jogja</h3>
+                    <p>Penyedia pengalaman petualangan Lava Tour terbaik di kawasan Gunung Merapi dengan layanan profesional dan jiwa petualang.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Paket Petualangan</h3>
+                    <a href="#packages">Lava Tour Reguler</a>
+                    <a href="#packages">Lava Tour Plus Sunrise</a>
+                    <a href="#packages">Lava Tour Eksklusif</a>
+                    <a href="#packages">Paket Kustom</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Tautan Petualangan</h3>
+                    <a href="#home">Home</a>
+                    <a href="#profile">Profil Kami</a>
+                    <a href="#gallery">Galeri Petualangan</a>
+                    <a href="#contact">Hubungi Kami</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Jeep Adventure Jogja. All Rights Reserved. | Jiwa Petualang Tak Pernah Padam</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // WhatsApp order function
+        function orderPackage(packageName, price) {
+            const phoneNumber = "6281234567890"; // Ganti dengan nomor WhatsApp bisnis
+            const message = `Halo Jeep Adventure Jogja! Saya ingin memesan ${packageName} seharga Rp ${price.toLocaleString('id-ID')}. 
+            
+Bisa tolong informasikan:
+1. Tanggal ketersediaan
+2. Proses pemesanan dan pembayaran
+3. Apa saja yang termasuk dalam paket ini
+4. Persyaratan yang perlu dipersiapkan
+
+Terima kasih, saya tunggu info lebih lanjut!`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile nav toggle
+        (function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('nav');
+
+            if (!navToggle || !nav) return;
+
+            navToggle.addEventListener('click', function() {
+                nav.classList.toggle('open');
+                this.classList.toggle('open');
+            });
+
+            // Close mobile nav when clicking a link
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (nav.classList.contains('open')) {
+                        nav.classList.remove('open');
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
